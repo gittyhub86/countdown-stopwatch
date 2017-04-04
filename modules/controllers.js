@@ -1,24 +1,28 @@
 function TimerCtrl() {
 	var now = new Date();
+	var requestId;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
 	this.dateVal = now.getDate();
 	this.hourVal = now.getHours();
 	this.minuteVal = 0;
 	this.userDate;
+	this.seconds;
+	this.minutes;
+	this.hours;
+	this.days;
 	this.countdown = countdown;
+	this.startAnimation = startAnimation;
 
 	function countdown() {
 		this.errArr = [];
 		if (!validateDate()) {
-			console.log('This is not a valid date');
 			return;
 		}  else {
-			console.log('That is a valid date');
 			this.userDate = new Date(this.yearVal,
 				this.monthVal-1, this.dateVal, this.hourVal,
 				this.minuteVal);
-			console.log(this.userDate);
+			this.startAnimation();
 		}
 	}
 
@@ -50,5 +54,18 @@ function TimerCtrl() {
 		} else {
 			return true;
 		}
+	}
+
+	var update = () => {
+		var now = new Date();
+		var timeRemaining = this.userDate - now;
+		console.log(timeRemaining);
+		requestId = requestAnimationFrame(update);
+	}
+
+	function startAnimation() {
+		var requestAnimationFrame = window.requestAnimationFrame
+			|| mozRequestAnimationFrame;
+		requestAnimationFrame(update);
 	}
 }
