@@ -1,0 +1,46 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #660066;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+	background-size: cover;
+	min-height: 100%;
+}
+
+.main {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	margin-top: 100px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-family: 'Helvetica', sans-serif;
+	font-size: 30px;
+}
+
+.content {
+	width: 100%;
+}
+
+table {
+	text-align: left;
+	margin: 0 auto;
+}
+
+tr td:nth-child(2n) {
+	width: 60px;
+	padding-right: 1em;
+}
+
+input[type=number] {
+	text-align: center;
+	width: 65px;
+	font-size: 18px;
+}

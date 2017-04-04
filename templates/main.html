@@ -1,3 +1,51 @@
-<h1>test</h1>
-<h1>test</h1>
-<h1>test</h1>
+<form name="myForm">
+  <table class="table-three-columns">
+    <tr>
+      <td>
+        <label>Month: </label>
+      </td>
+      <td>
+        <input name="monthVal" type="number" maxlength="2"
+          max="12" min="1" ng-model="ctrl.monthVal" />
+      <td>
+        <label>Day: </label>
+      </td>
+      <td>
+        <input name="dayVal" type="number" maxlength="2"
+          max="31" min="1" ng-model="ctrl.dateVal" />
+      </td>
+      <td>
+        <label>Year: </label>
+      </td>
+      <td>
+        <input name="yearVal" type="number" min="1"
+          ng-model="ctrl.yearVal" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Hour: </label>
+      </td>
+      <td>
+        <input name="hourVal" type="number" maxlength="2"
+          max="24" min="0" ng-model="ctrl.hourVal" />
+      </td>
+      <td>
+        <label>Minute: </label>
+      </td>
+      <td>
+        <input name="minuteVal" type="number" maxlength="2"
+          max="59" min="0" ng-model="ctrl.minuteVal" />
+      </td>
+      <td colspan="2">
+        <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
+          ng-click="ctrl.countdown()">
+          Start
+        </button>
+        <button class="btn btn-primary" ng-click="ctrl.stopCountdown()">
+          Stop
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>
