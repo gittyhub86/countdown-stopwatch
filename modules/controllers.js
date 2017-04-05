@@ -2,6 +2,7 @@ function TimerCtrl($scope) {
 	var now = new Date();
 	var requestAnimationFrame;
 	var requestId;
+	this.validDate = true;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
 	this.dateVal = now.getDate();
@@ -70,11 +71,10 @@ function TimerCtrl($scope) {
 		requestAnimationFrame(update);
 	}
 
-	function clockAnimation(time) {
+	var clockAnimation = (time) => {
 		this.seconds = Math.floor((time/1000) % 60);
 		this.minutes = Math.floor((time/1000/60) % 60);
 		this.hours = Math.floor((time/(1000*60*60)) % 24);
 		this.days = Math.floor(time/(1000*60*60*24));
-		console.log(this.seconds);
 	}
 }
