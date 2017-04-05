@@ -38,7 +38,10 @@ function TimerCtrl($scope) {
 		if (isNaN(this.dateVal) || this.dateVal < 1 ||
 			this.dateVal > 31) {
 			this.errArr.push(
-				"Hour must be between 0 and 24")
+				"Day must be between 1 and 31")
+		}
+		if (isNaN(this.hourVal) || this.hourVal < 0 || this.hourVal > 24) {
+			this.errArr.push("Hour value must be an integer between 0 and 24");
 		}
 		if (isNaN(this.minuteVal) || this.minuteVal < 0 ||
 			this.minuteVal > 59) {

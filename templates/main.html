@@ -19,6 +19,10 @@
   </div>
 </div>
 
+<div class="error" ng-show="ctrl.errArr.length > 0" ng-repeat="msg in ctrl.errArr">
+  <p>{{msg}}</p>
+</div>
+
 <form name="myForm">
   <table class="table-three-columns">
     <tr>

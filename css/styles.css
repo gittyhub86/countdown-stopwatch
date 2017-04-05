@@ -40,6 +40,10 @@ body {
 	color: #00cccc;
 }
 
+.error {
+	color: #ff6666;
+}
+
 table {
 	text-align: left;
 	margin: 0 auto;
