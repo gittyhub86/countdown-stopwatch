@@ -1,3 +1,3 @@
 var app = angular.module('components', [])
 	.directive('timer', timer)
-	.controller('timerCtrl',TimerCtrl);
+	.controller('timerCtrl', ['$scope', TimerCtrl]);

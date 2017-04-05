@@ -1,5 +1,6 @@
-function TimerCtrl() {
+function TimerCtrl($scope) {
 	var now = new Date();
+	var requestAnimationFrame;
 	var requestId;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
@@ -59,13 +60,21 @@ function TimerCtrl() {
 	var update = () => {
 		var now = new Date();
 		var timeRemaining = this.userDate - now;
-		console.log(timeRemaining);
+		$scope.$apply(clockAnimation(timeRemaining));
 		requestId = requestAnimationFrame(update);
 	}
 
 	function startAnimation() {
-		var requestAnimationFrame = window.requestAnimationFrame
+		requestAnimationFrame = window.requestAnimationFrame
 			|| mozRequestAnimationFrame;
 		requestAnimationFrame(update);
+	}
+
+	function clockAnimation(time) {
+		this.seconds = Math.floor((time/1000) % 60);
+		this.minutes = Math.floor((time/1000/60) % 60);
+		this.hours = Math.floor((time/(1000*60*60)) % 24);
+		this.days = Math.floor(time/(1000*60*60*24));
+		console.log(this.seconds);
 	}
 }
