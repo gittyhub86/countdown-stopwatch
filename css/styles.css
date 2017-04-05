@@ -29,6 +29,17 @@ body {
 	width: 100%;
 }
 
+.box {
+	display: inline-block;
+	border-radius: 4px;
+	padding: 10px;
+	background-color: rgba(130, 29, 125, 0.5);
+	border: 1px solid rgba(130, 29, 125, 0.5);
+}
+.countdown-int {
+	color: #00cccc;
+}
+
 table {
 	text-align: left;
 	margin: 0 auto;
