@@ -1,6 +1,9 @@
 <p>ctrl.validDate: {{ctrl.validDate}}</p>
 
 <div ng-show="ctrl.validDate">
+  <div class="countdown-header">
+    Time until {{ctrl.userDate | datePretty}}
+  </div>
   <div class="box">
     <div class="countdown-int">{{ctrl.days}}</div>
     <div class="countdown-text">Days</div>
