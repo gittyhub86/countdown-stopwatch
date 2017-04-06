@@ -14,23 +14,31 @@ function TimerCtrl($scope) {
 	this.days;
 	this.invalidTime;
 	this.countdown = countdown;
-	this.stopCountdown = stopAnimation;
+	this.stopCountdown = stopCountdown;
 
-	function countdown() {
-		this.errArr = [];
-		this.userDate = new Date(this.yearVal,
-				this.monthVal-1, this.dateVal, this.hourVal,
-				this.minuteVal);
-		if (!validateDate()) {
-			return;
-		} else if (!checkFutureDate()) {
-			this.validDate = false;
-			this.invalidTime = true;
-		} else {
-			this.validDate = true;
-			this.invalidTime = false;
-			startAnimation();
-		}
+	var checkFutureDate = () => {
+		return this.userDate > new Date();
+	}
+
+
+	var clockAnimation = (time) => {
+		this.seconds = Math.floor((time/1000) % 60);
+		this.minutes = Math.floor((time/1000/60) % 60);
+		this.hours = Math.floor((time/(1000*60*60)) % 24);
+		this.days = Math.floor(time/(1000*60*60*24));
+	}
+
+	var resetProperties = () => {
+		window.cancelAnimationFrame(requestId);
+		requestId = undefined;
+		this.validDate = false;
+
+	}
+
+	var startAnimation = () => {
+		requestAnimationFrame = window.requestAnimationFrame
+			|| mozRequestAnimationFrame;
+		requestAnimationFrame(update);
 	}
 
 	var validateDate = () => {
@@ -66,10 +74,6 @@ function TimerCtrl($scope) {
 		}
 	}
 
-	var checkFutureDate = () => {
-		return this.userDate > new Date();
-	}
-
 	var update = () => {
 		var now = new Date();
 		var timeRemaining = this.userDate - now;
@@ -77,29 +81,27 @@ function TimerCtrl($scope) {
 		requestId = requestAnimationFrame(update);
 	}
 
-	var startAnimation = () => {
-		requestAnimationFrame = window.requestAnimationFrame
-			|| mozRequestAnimationFrame;
-		requestAnimationFrame(update);
-	}
-
-	function stopAnimation() {
-		if (requestId) {
-			resetProperties();
+	function countdown() {
+		this.errArr = [];
+		this.userDate = new Date(this.yearVal,
+				this.monthVal-1, this.dateVal, this.hourVal,
+				this.minuteVal);
+		if (!validateDate()) {
+			this.stopCountdown();
+			return;
+		} else if (!checkFutureDate()) {
+			this.validDate = false;
+			this.invalidTime = true;
+		} else {
+			this.validDate = true;
+			this.invalidTime = false;
+			startAnimation();
 		}
 	}
 
-	var resetProperties = () => {
-		window.cancelAnimationFrame(requestId);
-		requestId = undefined;
-		this.validDate = false;
-
-	}
-
-	var clockAnimation = (time) => {
-		this.seconds = Math.floor((time/1000) % 60);
-		this.minutes = Math.floor((time/1000/60) % 60);
-		this.hours = Math.floor((time/(1000*60*60)) % 24);
-		this.days = Math.floor(time/(1000*60*60*24));
+	function stopCountdown() {
+		if (requestId) {
+			resetProperties();
+		}
 	}
 }
