@@ -15,6 +15,7 @@ function TimerCtrl($scope) {
 	this.invalidTime;
 	this.countdown = countdown;
 	this.stopCountdown = stopCountdown;
+	this.disableButton = false;
 
 	var checkFutureDate = () => {
 		return this.userDate > new Date();
@@ -32,6 +33,7 @@ function TimerCtrl($scope) {
 		window.cancelAnimationFrame(requestId);
 		requestId = undefined;
 		this.validDate = false;
+		this.disableButton = false;
 
 	}
 
@@ -96,6 +98,7 @@ function TimerCtrl($scope) {
 			this.validDate = true;
 			this.invalidTime = false;
 			startAnimation();
+			this.disableButton = true;
 		}
 	}
 
