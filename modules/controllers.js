@@ -23,14 +23,17 @@ function TimerCtrl($scope) {
 		return this.userDate > new Date();
 	}
 
-
 	var clockAnimation = (time) => {
 		this.seconds = Math.floor((time/1000) % 60);
 		this.minutes = Math.floor((time/1000/60) % 60);
 		this.hours = Math.floor((time/(1000*60*60)) % 24);
 		this.days = Math.floor(time/(1000*60*60*24));
 
-		if (time < 1) {
+		if (time < 11000) {
+			this.fadeSecs = this.seconds;
+		}
+
+		if (time < 0) {
 			this.validDate = false;
 			this.disableButton = false;
 			this.clickedStop = false;
