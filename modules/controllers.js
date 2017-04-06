@@ -18,12 +18,12 @@ function TimerCtrl($scope) {
 
 	function countdown() {
 		this.errArr = [];
+		this.userDate = new Date(this.yearVal,
+				this.monthVal-1, this.dateVal, this.hourVal,
+				this.minuteVal);
 		if (!validateDate()) {
 			return;
 		}  else {
-			this.userDate = new Date(this.yearVal,
-				this.monthVal-1, this.dateVal, this.hourVal,
-				this.minuteVal);
 			this.startAnimation();
 		}
 	}
@@ -59,6 +59,10 @@ function TimerCtrl($scope) {
 		} else {
 			return true;
 		}
+	}
+
+	var checkFutureDate = () => {
+		return this.userDate > new Date();
 	}
 
 	var update = () => {
