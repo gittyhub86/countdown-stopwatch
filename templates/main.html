@@ -1,5 +1,9 @@
 <p>ctrl.validDate: {{ctrl.validDate}}</p>
 
+<div class="countdown-header" ng-show="ctrl.countdownComplete">
+  <span>Your countdown is complete. Please enter a new countdown</span>
+</div>
+
 <div ng-show="ctrl.validDate">
   <div class="countdown-header">
     Time until {{ctrl.userDate | datePretty}}
@@ -78,7 +82,7 @@
           ng-click="ctrl.countdown()">
           Start
         </button>
-        <button class="btn btn-primary" ng-click="ctrl.stopCountdown()">
+        <button class="btn btn-primary" ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
           Stop
         </button>
       </td>
