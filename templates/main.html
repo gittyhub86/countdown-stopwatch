@@ -19,6 +19,12 @@
   </div>
 </div>
 
+<div class="error" ng-if="ctrl.invalidTime">
+  <span>
+    {{ctrl.userDate}} has passed. Please enter a new date
+  </span>
+</div>
+
 <div class="error" ng-show="ctrl.errArr.length > 0" ng-repeat="msg in ctrl.errArr">
   <p>{{msg}}</p>
 </div>

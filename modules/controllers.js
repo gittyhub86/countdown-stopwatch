@@ -13,6 +13,7 @@ function TimerCtrl($scope) {
 	this.minutes;
 	this.hours;
 	this.days;
+	this.invalidTime;
 	this.countdown = countdown;
 	this.startAnimation = startAnimation;
 
@@ -23,8 +24,10 @@ function TimerCtrl($scope) {
 				this.minuteVal);
 		if (!validateDate()) {
 			return;
-		}  else {
-			this.startAnimation();
+		} else if (!checkFutureDate()) {
+			this.invalidTime = true;
+		} else {
+			startAnimation();
 		}
 	}
 
