@@ -27,6 +27,7 @@ function TimerCtrl($scope) {
 		} else if (!checkFutureDate()) {
 			this.invalidTime = true;
 		} else {
+			this.invalidTime = false;
 			startAnimation();
 		}
 	}

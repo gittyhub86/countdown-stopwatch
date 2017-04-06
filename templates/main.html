@@ -21,7 +21,7 @@
 
 <div class="error" ng-if="ctrl.invalidTime">
   <span>
-    {{ctrl.userDate}} has passed. Please enter a new date
+    {{ctrl.userDate | datePretty}} has passed. Please enter a new date
   </span>
 </div>
 
