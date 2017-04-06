@@ -2,7 +2,6 @@ function TimerCtrl($scope) {
 	var now = new Date();
 	var requestAnimationFrame;
 	var requestId;
-	this.validDate = true;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
 	this.dateVal = now.getDate();
@@ -15,7 +14,7 @@ function TimerCtrl($scope) {
 	this.days;
 	this.invalidTime;
 	this.countdown = countdown;
-	this.startAnimation = startAnimation;
+	this.stopCountdown = stopAnimation;
 
 	function countdown() {
 		this.errArr = [];
@@ -25,8 +24,10 @@ function TimerCtrl($scope) {
 		if (!validateDate()) {
 			return;
 		} else if (!checkFutureDate()) {
+			this.validDate = false;
 			this.invalidTime = true;
 		} else {
+			this.validDate = true;
 			this.invalidTime = false;
 			startAnimation();
 		}
@@ -76,10 +77,23 @@ function TimerCtrl($scope) {
 		requestId = requestAnimationFrame(update);
 	}
 
-	function startAnimation() {
+	var startAnimation = () => {
 		requestAnimationFrame = window.requestAnimationFrame
 			|| mozRequestAnimationFrame;
 		requestAnimationFrame(update);
+	}
+
+	function stopAnimation() {
+		if (requestId) {
+			resetProperties();
+		}
+	}
+
+	var resetProperties = () => {
+		window.cancelAnimationFrame(requestId);
+		requestId = undefined;
+		this.validDate = false;
+
 	}
 
 	var clockAnimation = (time) => {

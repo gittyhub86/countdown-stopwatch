@@ -15,16 +15,12 @@ function datePretty() {
 		if (val) {
 			var dateStr = val.toString();
 			var strPretty = dateStr.replace(/:\d\d\s.+/, '', '')
-			console.log(strPretty)
 			var parseHour = dateStr.match(/\d\d\d\d\s\d\d/);
-			console.log(parseHour);
 			var hour = parseHour[0].split(' ')[1];
-			console.log(hour);
 			(hour=='00') ? strPretty=strPretty.replace(hour, '12') + ' ' + 'AM'
 			: (hour<'12') ? strPretty=strPretty + ' ' + 'AM'
 			: (hour=='12') ? strPretty=strPretty + ' ' + 'PM'
 			: strPretty=convertToCivilian(strPretty, hour) + ' ' + 'PM';
-			console.log(strPretty)
 			return strPretty;
 		}  else {
 			return val;
