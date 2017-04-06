@@ -27,13 +27,23 @@ function TimerCtrl($scope) {
 		this.minutes = Math.floor((time/1000/60) % 60);
 		this.hours = Math.floor((time/(1000*60*60)) % 24);
 		this.days = Math.floor(time/(1000*60*60*24));
+
+		if (time < 999) {
+			this.validDate = false;
+			this.disableButton = false;
+			this.stopCountdown();
+			return;
+		}
+		requestId = requestAnimationFrame(update);
 	}
 
 	var resetProperties = () => {
 		window.cancelAnimationFrame(requestId);
+		console.log('In resetProperties')
 		requestId = undefined;
 		this.validDate = false;
 		this.disableButton = false;
+		console.log(this);
 
 	}
 
@@ -79,8 +89,8 @@ function TimerCtrl($scope) {
 	var update = () => {
 		var now = new Date();
 		var timeRemaining = this.userDate - now;
+		console.log(timeRemaining);
 		$scope.$apply(clockAnimation(timeRemaining));
-		requestId = requestAnimationFrame(update);
 	}
 
 	function countdown() {
@@ -97,8 +107,8 @@ function TimerCtrl($scope) {
 		} else {
 			this.validDate = true;
 			this.invalidTime = false;
-			startAnimation();
 			this.disableButton = true;
+			startAnimation();
 		}
 	}
 
