@@ -141,12 +141,21 @@ function StopWatchCtrl($scope) {
 	var requestId;
 	this.startTime;
 	this.time;
+	this.nanTime;
 	this.start = start;
 	this.pause = pause;
 	this.reset = reset;
 
 	var displayTime = (now) => {
-		this.time = now - this.startTime;
+		var temp = now - this.startTime;
+		if (!temp || isNaN(temp) || temp == 'Infinity') {
+			this.nanTime = true;
+			//resetProperties();
+			//this.countdownComplete = false;
+			return;
+		} else {
+			this.time = now - this.startTime;
+		}
 	}
 
 	var startRequestAnimationFrame = () => {

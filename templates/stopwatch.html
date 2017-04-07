@@ -1,5 +1,9 @@
 <div class="stopclock-container">
-  <h1 class="stopwatch-header">Stopwatch</h1>
+  <div class="error" ng-if="stopWatch.nanTime">
+  <span>
+    Please refresh page or try a different browser
+  </span>
+</div>
   <span>{{stopWatch.time | stopWatchPretty}}</span>
   <div class="stopwatch-buttons">
     <button class="btn btn-lg" ng-click="stopWatch.start()"
