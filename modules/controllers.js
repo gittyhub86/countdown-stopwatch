@@ -139,6 +139,7 @@ function TimerCtrl($scope) {
 function StopWatchCtrl($scope) {
 	var requestAnimationFrame;
 	var requestId;
+	this.startTime;
 	this.start = start;
 	this.pause = pause;
 	this.reset = reset;
@@ -151,7 +152,7 @@ function StopWatchCtrl($scope) {
 
 	var update = () => {
 		var now = new Date();
-		console.log(now);
+		console.log(now - this.startTime);
 		requestId = requestAnimationFrame(update);
 	}
 
@@ -161,6 +162,7 @@ function StopWatchCtrl($scope) {
 	}
 
 	function start() {
+		this.startTime = new Date();
 		stopClockAnimation();
 	}
 }
