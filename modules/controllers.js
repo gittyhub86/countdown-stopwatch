@@ -13,6 +13,7 @@ function TimerCtrl($scope) {
 	this.hours;
 	this.days;
 	this.invalidTime;
+	this.nanTime;
 	this.countdownComplete;
 	this.clickedStop;
 	this.countdown = countdown;
@@ -24,6 +25,11 @@ function TimerCtrl($scope) {
 	}
 
 	var clockAnimation = (time) => {
+		if (!time || isNaN(time)) {
+			this.nanTime = true;
+			resetProperties();
+			this.countdownComplete = false;
+		}
 		this.seconds = Math.floor((time/1000) % 60);
 		this.minutes = Math.floor((time/1000/60) % 60);
 		this.hours = Math.floor((time/(1000*60*60)) % 24);
@@ -101,6 +107,7 @@ function TimerCtrl($scope) {
 
 	function countdown() {
 		this.invalidTime = false;
+		this.nanTime = false;
 		this.countdownComplete = false;
 		this.errArr = [];
 		this.userDate = new Date(this.yearVal,
