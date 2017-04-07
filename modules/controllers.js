@@ -140,9 +140,14 @@ function StopWatchCtrl($scope) {
 	var requestAnimationFrame;
 	var requestId;
 	this.startTime;
+	this.time;
 	this.start = start;
 	this.pause = pause;
 	this.reset = reset;
+
+	var displayTime = (now) => {
+		this.time = now - this.startTime;
+	}
 
 	var startRequestAnimationFrame = () => {
 		requestAnimationFrame = window.requestAnimationFrame
@@ -152,7 +157,7 @@ function StopWatchCtrl($scope) {
 
 	var update = () => {
 		var now = new Date();
-		console.log(now - this.startTime);
+		$scope.$apply(displayTime(now));
 		requestId = requestAnimationFrame(update);
 	}
 
