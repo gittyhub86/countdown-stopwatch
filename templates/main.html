@@ -1,3 +1,5 @@
+<h2 class="countdown-header">Countdown Clock</h2>
+
 <div class="countdown-header" ng-show="ctrl.countdownComplete">
   <span>Your countdown is complete. Please enter a new countdown</span>
 </div>
@@ -36,57 +38,55 @@
   <p>{{msg}}</p>
 </div>
 
-<form name="myForm">
-  <table class="table-three-columns">
-    <tr>
-      <td>
-        <label>Month: </label>
-      </td>
-      <td>
-        <input name="monthVal" type="number" maxlength="2"
-          max="12" min="1" ng-model="ctrl.monthVal" />
-      <td>
-        <label>Day: </label>
-      </td>
-      <td>
-        <input name="dayVal" type="number" maxlength="2"
-          max="31" min="1" ng-model="ctrl.dateVal" />
-      </td>
-      <td>
-        <label>Year: </label>
-      </td>
-      <td>
-        <input name="yearVal" type="number" min="1"
-          ng-model="ctrl.yearVal" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label>Hour: </label>
-      </td>
-      <td>
-        <input name="hourVal" type="number" maxlength="2"
-          max="24" min="0" ng-model="ctrl.hourVal" />
-      </td>
-      <td>
-        <label>Minute: </label>
-      </td>
-      <td>
-        <input name="minuteVal" type="number" maxlength="2"
-          max="59" min="0" ng-model="ctrl.minuteVal" />
-      </td>
-      <td colspan="2">
-        <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
-          ng-click="ctrl.countdown()">
-          Start
-        </button>
-        <button class="btn btn-primary" ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
-          Stop
-        </button>
-      </td>
-    </tr>
-  </table>
-</form>
+<table class="table-three-columns">
+  <tr>
+    <td>
+      <label>Month: </label>
+    </td>
+    <td>
+      <input type="number" maxlength="2"
+        max="12" min="1" ng-model="ctrl.monthVal" />
+    <td>
+      <label>Day: </label>
+    </td>
+    <td>
+      <input type="number" maxlength="2"
+        max="31" min="1" ng-model="ctrl.dateVal" />
+    </td>
+    <td>
+      <label>Year: </label>
+    </td>
+    <td>
+      <input type="number" min="1"
+        ng-model="ctrl.yearVal" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label>Hour: </label>
+    </td>
+    <td>
+      <input type="number" maxlength="2"
+        max="24" min="0" ng-model="ctrl.hourVal" />
+    </td>
+    <td>
+      <label>Minute: </label>
+    </td>
+    <td>
+      <input type="number" maxlength="2"
+        max="59" min="0" ng-model="ctrl.minuteVal" />
+    </td>
+    <td colspan="2">
+      <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
+        ng-click="ctrl.countdown()">
+        Start
+      </button>
+      <button class="btn btn-primary" ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
+        Stop
+      </button>
+    </td>
+  </tr>
+</table>
 
 <table class="table-responsive">
     <tr>
@@ -94,12 +94,12 @@
         <label>Month: </label>
       </td>
       <td>
-        <input name="monthValResponsive" type="number" maxlength="2"
+        <input type="number" maxlength="2"
           max="12" min="1" ng-model="ctrl.monthVal" />
       </td>
       <td colspan="2" align="center">
         <label>Day: </label>
-        <input name="dayValResponsive" type="number" maxlength="2"
+        <input type="number" maxlength="2"
           max="31" min="1" ng-model="ctrl.dateVal" />
       </td>
     </tr>
@@ -108,12 +108,12 @@
         <label>Year: </label>
       </td>
       <td>
-        <input name="yearValResponsive" type="number"
+        <input type="number"
           min="0" ng-model="ctrl.yearVal" />
       </td>
       <td colspan="2">
         <label>Hour: </label>
-        <input name="hourValResponsive" type="number" maxlength="2"
+        <input type="number" maxlength="2"
           max="24" min="0" ng-model="ctrl.hourVal" />
       </td>
     </tr>
@@ -122,7 +122,7 @@
         <label>Minute: </label>
       </td>
       <td>
-        <input name="minuteValResponsive" type="number" maxlength="2"
+        <input type="number" maxlength="2"
           max="59" min="0" ng-model="ctrl.minuteVal" />
       </td>
       <td class="background-button" colspan="2">

@@ -1,0 +1,113 @@
+@media screen and (min-width: 250px) {
+  .countdown-header {
+    font-size: 14px;
+  }
+  .box {
+    margin-bottom: 10px;
+    font-size: 9px;
+  }
+  .countdown-int {
+    font-size: 21px;
+  }
+  .countdown-text {
+    font-size: 10px;
+  }
+  label {
+    font-size: 12px;
+  }
+  input[type="number"] {
+    width: 55px;
+    font-size: 12px;
+  }
+  .background-button button {
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  label {
+    font-size: 14px;
+  }
+  input[type="number"] {
+    width: 65px;
+    font-size: 14px;
+  }
+  .background-button button {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .countdown-header {
+    font-size: 18px;
+  }
+  .countdown-int {
+    font-size: 27px;
+
+  }
+  .countdown-text {
+    font-size: 11px;
+  }
+  label {
+    font-size: 16px;
+  }
+   input[type="number"] {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .table-three-columns {
+    display: none;
+  }
+  .table-responsive {
+    display: table;
+    border: none;
+    width: auto;
+  }
+  .error {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 551px) {
+  .error {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 610px) {
+  .countdown-header {
+    font-size: 30px;
+  }
+  .countdown-int {
+    font-size: 40px;
+  }
+  .countdown-text {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .countdown-int {
+    font-size: 50px;
+  }
+  .countdown-text {
+    font-size: 23px;
+  }
+  .error {
+    font-size: 22px;
+  }
+  .box {
+    margin-right: 0.8em;
+  }
+  .font-color-main {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .main {
+    width: 850px;
+  }
+}
