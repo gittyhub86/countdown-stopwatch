@@ -13,7 +13,6 @@ function fadeSec() {
 		link: function(scope, element, attrs) {
 			var startOpacity = 0.90;
 			function fadeSecsFunc(decrement) {
-				console.log(startOpacity)
 				if (angular.isNumber(decrement) && decrement > 0) {
 					startOpacity -= decrement;
 					element.css('opacity', startOpacity);

@@ -87,3 +87,51 @@
     </tr>
   </table>
 </form>
+
+<table class="table-responsive">
+    <tr>
+      <td>
+        <label>Month: </label>
+      </td>
+      <td>
+        <input name="monthValResponsive" type="number" maxlength="2"
+          max="12" min="1" ng-model="ctrl.monthVal" />
+      </td>
+      <td colspan="2" align="center">
+        <label>Day: </label>
+        <input name="dayValResponsive" type="number" maxlength="2"
+          max="31" min="1" ng-model="ctrl.dateVal" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Year: </label>
+      </td>
+      <td>
+        <input name="yearValResponsive" type="number"
+          min="0" ng-model="ctrl.yearVal" />
+      </td>
+      <td colspan="2">
+        <label>Hour: </label>
+        <input name="hourValResponsive" type="number" maxlength="2"
+          max="24" min="0" ng-model="ctrl.hourVal" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Minute: </label>
+      </td>
+      <td>
+        <input name="minuteValResponsive" type="number" maxlength="2"
+          max="59" min="0" ng-model="ctrl.minuteVal" />
+      </td>
+      <td class="background-button" colspan="2">
+        <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
+          ng-click="ctrl.countdown()">Start</button>
+        <button class="btn btn-primary"
+          ng-click="ctrl.stopCountdown()">
+          Stop
+        </button>
+      </td>
+    </tr>
+  </table>
