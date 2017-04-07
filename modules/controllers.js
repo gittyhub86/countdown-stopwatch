@@ -25,10 +25,11 @@ function TimerCtrl($scope) {
 	}
 
 	var clockAnimation = (time) => {
-		if (!time || isNaN(time)) {
+		if (!time || isNaN(time) || time == 'Infinity') {
 			this.nanTime = true;
 			resetProperties();
 			this.countdownComplete = false;
+			return;
 		}
 		this.seconds = Math.floor((time/1000) % 60);
 		this.minutes = Math.floor((time/1000/60) % 60);
