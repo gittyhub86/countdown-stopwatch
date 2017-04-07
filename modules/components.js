@@ -4,4 +4,5 @@ var app = angular.module('components', [])
 	.directive('fadeSec', fadeSec)
 	.controller('timerCtrl', ['$scope', TimerCtrl])
 	.controller('stopWatchCtrl', ['$scope', StopWatchCtrl])
-	.filter('datePretty', datePretty);
+	.filter('datePretty', datePretty)
+	.filter('stopWatchPretty', stopWatchPretty);

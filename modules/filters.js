@@ -27,3 +27,21 @@ function datePretty() {
 		}
 	}
 }
+
+function stopWatchPretty() {
+	return function(val) {
+		if (val) {
+			var seconds = Math.floor((val/1000) % 60);
+			var minutes = Math.floor((val/1000/60) % 60);
+			var hours = Math.floor((val/(1000*60*60)) % 24);
+			var ms = Math.floor((val/100) % 10);
+			if (hours < 10) hours = '0' + hours;
+			if (minutes < 10) minutes = '0' + minutes;
+			if (seconds < 10) seconds = '0'+ seconds;
+			var str = hours + ':' + minutes + ':' + seconds + '.' + ms;
+			return str;
+		}  else {
+			return val;
+		}
+	}
+}
