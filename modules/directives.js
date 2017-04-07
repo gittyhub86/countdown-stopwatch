@@ -6,6 +6,14 @@ function timer() {
 	};
 }
 
+function stopWatch() {
+	return {
+		templateUrl: 'templates/stopwatch.html',
+		controller: 'stopWatchCtrl',
+		controllerAs: 'stopWatch'
+	};
+}
+
 function fadeSec() {
 	return {
 		restrict: 'A',

@@ -135,3 +135,6 @@ function TimerCtrl($scope) {
 		}
 	}
 }
+
+function StopWatchCtrl($scope) {
+}

@@ -3,4 +3,7 @@ angular.module('main', ['ngRoute', 'components'])
 		$routeProvider.when('/', {
 			template: '<timer></timer>'
 		});
+		$routeProvider.when('/stopwatch', {
+			template: '<stop-watch></stop-watch>'
+		});
 	}]);
