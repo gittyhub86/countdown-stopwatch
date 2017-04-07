@@ -137,4 +137,30 @@ function TimerCtrl($scope) {
 }
 
 function StopWatchCtrl($scope) {
+	var requestAnimationFrame;
+	var requestId;
+	this.start = start;
+	this.pause = pause;
+	this.reset = reset;
+
+	var stopClockAnimation = () => {
+		requestAnimationFrame = window.requestAnimationFrame
+			|| window.mozRequestAnimationFrame;
+		requestAnimationFrame(update);
+	}
+
+	var update = () => {
+		var now = new Date();
+		console.log(now);
+		requestId = requestAnimationFrame(update);
+	}
+
+	function pause() {
+	}
+	function reset(){
+	}
+
+	function start() {
+		stopClockAnimation();
+	}
 }
