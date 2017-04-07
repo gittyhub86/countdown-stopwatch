@@ -144,7 +144,7 @@ function StopWatchCtrl($scope) {
 	this.pause = pause;
 	this.reset = reset;
 
-	var stopClockAnimation = () => {
+	var startRequestAnimationFrame = () => {
 		requestAnimationFrame = window.requestAnimationFrame
 			|| window.mozRequestAnimationFrame;
 		requestAnimationFrame(update);
@@ -163,6 +163,6 @@ function StopWatchCtrl($scope) {
 
 	function start() {
 		this.startTime = new Date();
-		stopClockAnimation();
+		startRequestAnimationFrame();
 	}
 }
