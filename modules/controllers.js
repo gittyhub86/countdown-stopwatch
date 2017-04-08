@@ -162,7 +162,6 @@ function StopWatchCtrl($scope) {
 				this.time = temp;
 			}
 		}
-
 	}
 
 	var update = () => {
@@ -182,6 +181,7 @@ function StopWatchCtrl($scope) {
 		if (requestId) {
 			window.cancelAnimationFrame(requestId);
 			this.time = '0';
+			this.started = false;
 		}
 	}
 
