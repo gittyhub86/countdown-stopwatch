@@ -13,7 +13,6 @@ function TimerCtrl($scope) {
 	this.hours;
 	this.days;
 	this.invalidTime;
-	this.nanTime;
 	this.countdownComplete;
 	this.clickedStop;
 	this.countdown = countdown;
@@ -24,26 +23,6 @@ function TimerCtrl($scope) {
 		return this.userDate > new Date();
 	}
 
-	var clockAnimation = (time) => {
-		this.seconds = Math.floor((time/1000) % 60);
-		this.minutes = Math.floor((time/1000/60) % 60);
-		this.hours = Math.floor((time/(1000*60*60)) % 24);
-		this.days = Math.floor(time/(1000*60*60*24));
-
-		if (time < 11000) {
-			this.fadeSecs = this.seconds;
-		}
-
-		if (time < 0) {
-			this.validDate = false;
-			this.disableButton = false;
-			this.clickedStop = false;
-			this.stopCountdown();
-			return;
-		}
-		requestId = requestAnimationFrame(update);
-	}
-
 	var resetProperties = () => {
 		window.cancelAnimationFrame(requestId);
 		requestId = undefined;
@@ -52,7 +31,6 @@ function TimerCtrl($scope) {
 		}
 		this.validDate = false;
 		this.disableButton = false;
-
 	}
 
 	var startAnimation = () => {
@@ -98,20 +76,27 @@ function TimerCtrl($scope) {
 		$scope.$apply(() => {
 			var now = new Date();
 			var timeRemaining = this.userDate - now;
-			if (isNaN(timeRemaining) || timeRemaining === null || timeRemaining == 'Infinity') {
-				this.nanTime = true;
-				resetProperties();
-				this.countdownComplete = false;
-				return;
-			} else {
-				clockAnimation(timeRemaining);
+			this.seconds = Math.floor((timeRemaining/1000) % 60);
+			this.minutes = Math.floor((timeRemaining/1000/60) % 60);
+			this.hours = Math.floor((timeRemaining/(1000*60*60)) % 24);
+			this.days = Math.floor(timeRemaining/(1000*60*60*24));
+
+			if (timeRemaining < 11000) {
+				this.fadeSecs = this.seconds;
 			}
+			if (timeRemaining < 0) {
+				this.validDate = false;
+				this.disableButton = false;
+				this.clickedStop = false;
+				this.stopCountdown();
+				return;
+			}
+			requestId = requestAnimationFrame(update);
 		});
 	}
 
 	function countdown() {
 		this.invalidTime = false;
-		this.nanTime = false;
 		this.countdownComplete = false;
 		this.errArr = [];
 		this.userDate = new Date(this.yearVal,
