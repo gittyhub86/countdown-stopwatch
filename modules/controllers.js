@@ -180,6 +180,7 @@ function StopWatchCtrl($scope) {
 	function reset(){
 		if (requestId) {
 			window.cancelAnimationFrame(requestId);
+			requestId = null;
 			this.startTime = null;
 			this.pausedTime = 0;
 			this.time = '0';
