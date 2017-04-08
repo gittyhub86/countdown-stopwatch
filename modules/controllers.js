@@ -142,7 +142,6 @@ function StopWatchCtrl($scope) {
 	this.started;
 	this.startTime;
 	this.time = '0';
-	this.nanTime;
 	this.start = start;
 	this.pause = pause;
 	this.pausedTime = 0;
@@ -154,13 +153,7 @@ function StopWatchCtrl($scope) {
 			this.startTime = new Date();
 		}
 		else {
-			var temp = (now - this.startTime) + this.pausedTime;
-			if (!temp || isNaN(temp) || temp == 'Infinity') {
-				this.nanTime = true;
-				return;
-			} else {
-				this.time = temp;
-			}
+			this.time = (now - this.startTime) + this.pausedTime;
 		}
 	}
 
