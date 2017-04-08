@@ -146,7 +146,7 @@ function StopWatchCtrl($scope) {
 	}
 
 	var update = () => {
-		$scope.$apply(displayTime());
+		$scope.$apply(displayTime);
 		requestId = requestAnimationFrame(update);
 	}
 
