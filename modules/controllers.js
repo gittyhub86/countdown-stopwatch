@@ -176,10 +176,13 @@ function StopWatchCtrl($scope) {
 			this.pausedTime = this.time;
 			this.startTime = null;
 			this.started = false;
-			console.log(this.pausedTime);
 		}
 	}
 	function reset(){
+		if (requestId) {
+			window.cancelAnimationFrame(requestId);
+			this.time = '0';
+		}
 	}
 
 	function start(){
