@@ -139,7 +139,7 @@ function TimerCtrl($scope) {
 function StopWatchCtrl($scope) {
 	var requestAnimationFrame;
 	var requestId;
-	var timeTot = 0;
+	this.started;
 	this.startTime;
 	this.time = '0';
 	this.nanTime;
@@ -175,6 +175,7 @@ function StopWatchCtrl($scope) {
 			window.cancelAnimationFrame(requestId);
 			this.pausedTime = this.time;
 			this.startTime = null;
+			this.started = false;
 			console.log(this.pausedTime);
 		}
 	}
@@ -182,6 +183,7 @@ function StopWatchCtrl($scope) {
 	}
 
 	function start(){
+		this.started = true;
 		requestAnimationFrame = window.requestAnimationFrame
 			|| window.mozRequestAnimationFrame;
 		requestAnimationFrame(update);
