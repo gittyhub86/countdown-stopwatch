@@ -1,145 +1,148 @@
-<p>ctrl.nanTime: {{ctrl.nanTime}}</p>
+<div class="main">
+  <div class="content">
+    <p>ctrl.nanTime: {{ctrl.nanTime}}</p>
 
-<h2 class="countdown-header">Countdown Clock</h2>
-
-<div class="countdown-header" ng-show="ctrl.countdownComplete">
-  <span>Your countdown is complete. Please enter a new countdown</span>
-</div>
-
-<div ng-show="ctrl.validDate">
-  <div class="countdown-header">
-    Time until {{ctrl.userDate | datePretty}}
-  </div>
-  <div class="box">
-    <div class="countdown-int">{{ctrl.days}}</div>
-    <div class="countdown-text">Days</div>
-  </div>
-  <div class="box">
-    <div class="countdown-int">{{ctrl.hours}}</div>
-    <div class="countdown-text">Hours</div>
-  </div>
-  <div class="box">
-    <div class="countdown-int">{{ctrl.minutes}}</div>
-    <div class="countdown-text">Minutes</div>
-  </div>
-  <div class="box">
-    <div fade-sec class="countdown-int countdown-int-last">
-      {{ctrl.seconds}}
+    <h2 class="countdown-header">Countdown Clock</h2>
+    <div class="countdown-header" ng-show="ctrl.countdownComplete">
+      <span>Your countdown is complete. Please enter a new countdown</span>
     </div>
-    <div class="countdown-text">Seconds</div>
+
+    <div ng-show="ctrl.validDate">
+      <div class="countdown-header">
+        Time until {{ctrl.userDate | datePretty}}
+      </div>
+      <div class="box">
+        <div class="countdown-int">{{ctrl.days}}</div>
+        <div class="countdown-text">Days</div>
+      </div>
+      <div class="box">
+        <div class="countdown-int">{{ctrl.hours}}</div>
+        <div class="countdown-text">Hours</div>
+      </div>
+      <div class="box">
+        <div class="countdown-int">{{ctrl.minutes}}</div>
+        <div class="countdown-text">Minutes</div>
+      </div>
+      <div class="box">
+        <div fade-sec class="countdown-int countdown-int-last">
+          {{ctrl.seconds}}
+        </div>
+        <div class="countdown-text">Seconds</div>
+      </div>
+    </div>
+
+    <div class="error" ng-if="ctrl.invalidTime">
+      <span>
+        {{ctrl.userDate | datePretty}} has passed. Please enter a new date
+      </span>
+    </div>
+
+    <div class="error" ng-if="ctrl.nanTime">
+      <span>
+        Please refresh page or try a different browser
+      </span>
+    </div>
+
+    <div class="error" ng-show="ctrl.errArr.length > 0" ng-repeat="msg in ctrl.errArr">
+      <p>{{msg}}</p>
+    </div>
+
+    <table class="table-three-columns">
+      <tr>
+        <td>
+          <label>Month: </label>
+        </td>
+        <td>
+          <input type="number" maxlength="2"
+            max="12" min="1" ng-model="ctrl.monthVal" />
+        <td>
+          <label>Day: </label>
+        </td>
+        <td>
+          <input type="number" maxlength="2"
+            max="31" min="1" ng-model="ctrl.dateVal" />
+        </td>
+        <td>
+          <label>Year: </label>
+        </td>
+        <td>
+          <input type="number" min="1"
+            ng-model="ctrl.yearVal" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Hour: </label>
+        </td>
+        <td>
+          <input type="number" maxlength="2"
+            max="24" min="0" ng-model="ctrl.hourVal" />
+        </td>
+        <td>
+          <label>Minute: </label>
+        </td>
+        <td>
+          <input type="number" maxlength="2"
+            max="59" min="0" ng-model="ctrl.minuteVal" />
+        </td>
+        <td colspan="2">
+          <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
+            ng-click="ctrl.countdown()">
+            Start
+          </button>
+          <button class="btn btn-primary" ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
+            Stop
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <table class="table-responsive">
+      <tr>
+        <td>
+          <label>Month: </label>
+        </td>
+        <td>
+          <input type="number" maxlength="2"
+            max="12" min="1" ng-model="ctrl.monthVal" />
+        </td>
+        <td colspan="2" align="center">
+          <label>Day: </label>
+          <input type="number" maxlength="2"
+            max="31" min="1" ng-model="ctrl.dateVal" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Year: </label>
+        </td>
+        <td>
+          <input type="number"
+            min="0" ng-model="ctrl.yearVal" />
+        </td>
+        <td colspan="2">
+          <label>Hour: </label>
+          <input type="number" maxlength="2"
+            max="24" min="0" ng-model="ctrl.hourVal" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Minute: </label>
+        </td>
+        <td>
+          <input type="number" maxlength="2"
+            max="59" min="0" ng-model="ctrl.minuteVal" />
+        </td>
+        <td class="background-button" colspan="2">
+          <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
+            ng-click="ctrl.countdown()">Start</button>
+          <button class="btn btn-primary"
+            ng-click="ctrl.stopCountdown()">
+            Stop
+          </button>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
-
-<div class="error" ng-if="ctrl.invalidTime">
-  <span>
-    {{ctrl.userDate | datePretty}} has passed. Please enter a new date
-  </span>
-</div>
-
-<div class="error" ng-if="ctrl.nanTime">
-  <span>
-    Please refresh page or try a different browser
-  </span>
-</div>
-
-<div class="error" ng-show="ctrl.errArr.length > 0" ng-repeat="msg in ctrl.errArr">
-  <p>{{msg}}</p>
-</div>
-
-<table class="table-three-columns">
-  <tr>
-    <td>
-      <label>Month: </label>
-    </td>
-    <td>
-      <input type="number" maxlength="2"
-        max="12" min="1" ng-model="ctrl.monthVal" />
-    <td>
-      <label>Day: </label>
-    </td>
-    <td>
-      <input type="number" maxlength="2"
-        max="31" min="1" ng-model="ctrl.dateVal" />
-    </td>
-    <td>
-      <label>Year: </label>
-    </td>
-    <td>
-      <input type="number" min="1"
-        ng-model="ctrl.yearVal" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <label>Hour: </label>
-    </td>
-    <td>
-      <input type="number" maxlength="2"
-        max="24" min="0" ng-model="ctrl.hourVal" />
-    </td>
-    <td>
-      <label>Minute: </label>
-    </td>
-    <td>
-      <input type="number" maxlength="2"
-        max="59" min="0" ng-model="ctrl.minuteVal" />
-    </td>
-    <td colspan="2">
-      <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
-        ng-click="ctrl.countdown()">
-        Start
-      </button>
-      <button class="btn btn-primary" ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
-        Stop
-      </button>
-    </td>
-  </tr>
-</table>
-
-<table class="table-responsive">
-    <tr>
-      <td>
-        <label>Month: </label>
-      </td>
-      <td>
-        <input type="number" maxlength="2"
-          max="12" min="1" ng-model="ctrl.monthVal" />
-      </td>
-      <td colspan="2" align="center">
-        <label>Day: </label>
-        <input type="number" maxlength="2"
-          max="31" min="1" ng-model="ctrl.dateVal" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label>Year: </label>
-      </td>
-      <td>
-        <input type="number"
-          min="0" ng-model="ctrl.yearVal" />
-      </td>
-      <td colspan="2">
-        <label>Hour: </label>
-        <input type="number" maxlength="2"
-          max="24" min="0" ng-model="ctrl.hourVal" />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label>Minute: </label>
-      </td>
-      <td>
-        <input type="number" maxlength="2"
-          max="59" min="0" ng-model="ctrl.minuteVal" />
-      </td>
-      <td class="background-button" colspan="2">
-        <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
-          ng-click="ctrl.countdown()">Start</button>
-        <button class="btn btn-primary"
-          ng-click="ctrl.stopCountdown()">
-          Stop
-        </button>
-      </td>
-    </tr>
-  </table>
