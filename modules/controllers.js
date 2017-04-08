@@ -149,6 +149,7 @@ function StopWatchCtrl($scope) {
 	this.reset = reset;
 
 	var displayTime = () => {
+		console.log('test')
 		var now = new Date();
 		if (!this.startTime) {
 			this.startTime = new Date();
@@ -180,8 +181,10 @@ function StopWatchCtrl($scope) {
 	function reset(){
 		if (requestId) {
 			window.cancelAnimationFrame(requestId);
-			this.time = '0';
+			this.startTime = null;
 			this.started = false;
+			this.pausedTime = 0;
+			this.time = '0';
 		}
 	}
 
