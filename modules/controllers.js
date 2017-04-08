@@ -139,44 +139,51 @@ function TimerCtrl($scope) {
 function StopWatchCtrl($scope) {
 	var requestAnimationFrame;
 	var requestId;
+	var timeTot = 0;
 	this.startTime;
-	this.time;
+	this.time = '0';
 	this.nanTime;
 	this.start = start;
 	this.pause = pause;
+	this.pausedTime = 0;
 	this.reset = reset;
 
-	var displayTime = (now) => {
-		var temp = now - this.startTime;
-		if (!temp || isNaN(temp) || temp == 'Infinity') {
-			this.nanTime = true;
-			//resetProperties();
-			//this.countdownComplete = false;
-			return;
-		} else {
-			this.time = now - this.startTime;
+	var displayTime = () => {
+		var now = new Date();
+		if (!this.startTime) {
+			this.startTime = new Date();
 		}
-	}
+		else {
+			var temp = (now - this.startTime) + this.pausedTime;
+			if (!temp || isNaN(temp) || temp == 'Infinity') {
+				this.nanTime = true;
+				return;
+			} else {
+				this.time = temp;
+			}
+		}
 
-	var startRequestAnimationFrame = () => {
-		requestAnimationFrame = window.requestAnimationFrame
-			|| window.mozRequestAnimationFrame;
-		requestAnimationFrame(update);
 	}
 
 	var update = () => {
-		var now = new Date();
-		$scope.$apply(displayTime(now));
+		$scope.$apply(displayTime());
 		requestId = requestAnimationFrame(update);
 	}
 
 	function pause() {
+		if (requestId) {
+			window.cancelAnimationFrame(requestId);
+			this.pausedTime = this.time;
+			this.startTime = null;
+			console.log(this.pausedTime);
+		}
 	}
 	function reset(){
 	}
 
-	function start() {
-		this.startTime = new Date();
-		startRequestAnimationFrame();
+	function start(){
+		requestAnimationFrame = window.requestAnimationFrame
+			|| window.mozRequestAnimationFrame;
+		requestAnimationFrame(update);
 	}
 }

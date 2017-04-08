@@ -1,17 +1,16 @@
 <div class="stopclock-container">
-  <div class="error" ng-if="stopWatch.nanTime">
+<span>{{stopWatch.time | stopWatchPretty}}</span>
+<div class="error" ng-if="stopWatch.nanTime">
   <span>
     Please refresh page or try a different browser
   </span>
 </div>
-  <span>{{stopWatch.time | stopWatchPretty}}</span>
   <div class="stopwatch-buttons">
     <button class="btn btn-lg" ng-click="stopWatch.start()"
       ng-disabled="stopWatch.started">
       <i class="glyphicon glyphicon-play"></i>
       </button>
-    <button class="btn btn-lg" ng-click="stopWatch.pause()"
-      ng-disabled="!stopWatch.started">
+    <button class="btn btn-lg" ng-click="stopWatch.pause()">
       <i class="glyphicon glyphicon-pause"></i>
     </button>
     <button class="btn btn-lg" ng-click="stopWatch.reset()"
