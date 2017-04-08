@@ -10,7 +10,7 @@
 
 @media screen and (min-width: 400px) {
   .stopclock-container {
-    font-size: 55px;
+    font-size: 49px;
   }
   .stopwatch-buttons .btn-lg {
     font-size: 19px;
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 530px) {
   .stopclock-container {
-    font-size: 70px;
+    font-size: 60px;
   }
   .stopwatch-buttons .btn-lg {
     font-size: 23px;
