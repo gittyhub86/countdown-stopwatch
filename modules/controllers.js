@@ -25,12 +25,6 @@ function TimerCtrl($scope) {
 	}
 
 	var clockAnimation = (time) => {
-		if (!time || isNaN(time) || time == 'Infinity') {
-			this.nanTime = true;
-			resetProperties();
-			this.countdownComplete = false;
-			return;
-		}
 		this.seconds = Math.floor((time/1000) % 60);
 		this.minutes = Math.floor((time/1000/60) % 60);
 		this.hours = Math.floor((time/(1000*60*60)) % 24);
@@ -101,9 +95,18 @@ function TimerCtrl($scope) {
 	}
 
 	var update = () => {
-		var now = new Date();
-		var timeRemaining = this.userDate - now;
-		$scope.$apply(clockAnimation(timeRemaining));
+		$scope.$apply(() => {
+			var now = new Date();
+			var timeRemaining = this.userDate - now;
+			if (isNaN(timeRemaining) || timeRemaining === null || timeRemaining == 'Infinity') {
+				this.nanTime = true;
+				resetProperties();
+				this.countdownComplete = false;
+				return;
+			} else {
+				clockAnimation(timeRemaining);
+			}
+		});
 	}
 
 	function countdown() {
