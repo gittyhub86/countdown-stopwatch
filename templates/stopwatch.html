@@ -3,14 +3,14 @@
     <div class="stopclock-container">
     <span class="time">{{stopWatch.time | stopWatchPretty}}</span>
       <div class="stopwatch-buttons">
-        <button class="btn btn-lg" ng-click="stopWatch.start()"
-          ng-disabled="stopWatch.started">
+        <button class="btn btn-lg" data-ng-click="stopWatch.start()"
+          data-ng-disabled="stopWatch.started">
           <i class="glyphicon glyphicon-play"></i>
           </button>
-        <button class="btn btn-lg" ng-click="stopWatch.pause()">
+        <button class="btn btn-lg" data-ng-click="stopWatch.pause()">
           <i class="glyphicon glyphicon-pause"></i>
         </button>
-        <button class="btn btn-lg" ng-click="stopWatch.reset()">
+        <button class="btn btn-lg" data-ng-click="stopWatch.reset()">
           <i class="glyphicon">Reset</i>
         </button>
       </div>

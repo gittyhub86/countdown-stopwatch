@@ -1,11 +1,11 @@
 <div class="main">
   <div class="content">
     <h2 class="countdown-header">Countdown Clock</h2>
-    <div class="countdown-header" ng-show="ctrl.countdownComplete">
+    <div class="countdown-header" data-ng-show="ctrl.countdownComplete">
       <span>Your countdown is complete. Please enter a new countdown</span>
     </div>
 
-    <div ng-show="ctrl.validDate">
+    <div data-ng-show="ctrl.validDate">
       <div class="countdown-header">
         Time until {{ctrl.userDate | datePretty}}
       </div>
@@ -29,13 +29,13 @@
       </div>
     </div>
 
-    <div class="error" ng-if="ctrl.invalidTime">
+    <div class="error" data-ng-if="ctrl.invalidTime">
       <span>
         {{ctrl.userDate | datePretty}} has passed. Please enter a new date
       </span>
     </div>
 
-    <div class="error" ng-show="ctrl.errArr.length > 0" ng-repeat="msg in ctrl.errArr">
+    <div class="error" data-ng-show="ctrl.errArr.length > 0" data-ng-repeat="msg in ctrl.errArr">
       <p>{{msg}}</p>
     </div>
 
@@ -45,21 +45,19 @@
           <label>Month: </label>
         </td>
         <td>
-          <input type="number" maxlength="2"
-            max="12" min="1" ng-model="ctrl.monthVal" />
+          <input type="number" max="12" min="1" data-data-ng-model="ctrl.monthVal" />
         <td>
           <label>Day: </label>
         </td>
         <td>
-          <input type="number" maxlength="2"
-            max="31" min="1" ng-model="ctrl.dateVal" />
+          <input type="number" max="31" min="1" data-ng-model="ctrl.dateVal" />
         </td>
         <td>
           <label>Year: </label>
         </td>
         <td>
           <input type="number" min="1"
-            ng-model="ctrl.yearVal" />
+            data-ng-model="ctrl.yearVal" />
         </td>
       </tr>
       <tr>
@@ -67,22 +65,20 @@
           <label>Hour: </label>
         </td>
         <td>
-          <input type="number" maxlength="2"
-            max="24" min="0" ng-model="ctrl.hourVal" />
+          <input type="number" max="24" min="0" data-ng-model="ctrl.hourVal" />
         </td>
         <td>
           <label>Minute: </label>
         </td>
         <td>
-          <input type="number" maxlength="2"
-            max="59" min="0" ng-model="ctrl.minuteVal" />
+          <input type="number" max="59" min="0" data-ng-model="ctrl.minuteVal" />
         </td>
         <td colspan="2">
-          <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
-            ng-click="ctrl.countdown()">
+          <button data-ng-disabled="ctrl.disableButton" class="btn btn-primary"
+            data-ng-click="ctrl.countdown()">
             Start
           </button>
-          <button class="btn btn-primary" ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
+          <button class="btn btn-primary" data-ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
             Stop
           </button>
         </td>
@@ -95,13 +91,11 @@
           <label>Month: </label>
         </td>
         <td>
-          <input type="number" maxlength="2"
-            max="12" min="1" ng-model="ctrl.monthVal" />
+          <input type="number" max="12" min="1" data-ng-model="ctrl.monthVal" />
         </td>
-        <td colspan="2" align="center">
+        <td colspan="2">
           <label>Day: </label>
-          <input type="number" maxlength="2"
-            max="31" min="1" ng-model="ctrl.dateVal" />
+          <input type="number" max="31" min="1" data-ng-model="ctrl.dateVal" />
         </td>
       </tr>
       <tr>
@@ -110,12 +104,11 @@
         </td>
         <td>
           <input type="number"
-            min="0" ng-model="ctrl.yearVal" />
+            min="0" data-ng-model="ctrl.yearVal" />
         </td>
         <td colspan="2">
           <label>Hour: </label>
-          <input type="number" maxlength="2"
-            max="24" min="0" ng-model="ctrl.hourVal" />
+          <input type="number" max="24" min="0" data-ng-model="ctrl.hourVal" />
         </td>
       </tr>
       <tr>
@@ -123,14 +116,13 @@
           <label>Minute: </label>
         </td>
         <td>
-          <input type="number" maxlength="2"
-            max="59" min="0" ng-model="ctrl.minuteVal" />
+          <input type="number" max="59" min="0" data-ng-model="ctrl.minuteVal" />
         </td>
         <td class="background-button" colspan="2">
-          <button ng-disabled="ctrl.disableButton" class="btn btn-primary"
-            ng-click="ctrl.countdown()">Start</button>
+          <button data-ng-disabled="ctrl.disableButton" class="btn btn-primary"
+            data-ng-click="ctrl.countdown()">Start</button>
           <button class="btn btn-primary"
-            ng-click="ctrl.stopCountdown()">
+            data-ng-click="ctrl.stopCountdown()">
             Stop
           </button>
         </td>

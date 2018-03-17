@@ -1,21 +1,19 @@
 <!doctype html>
-<html ng-app="main" lang="en">
+<html data-ng-app="main">
 <head>
-  <meta charset="utf-8">
   <title>Countdown Timer - Stopwatch</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
   <meta name="keywords" content="countdown,count down,timer,stopwatch,stop watch" />
   <meta name="description" content="Countdown to any date and time. Use stopwatch to measure elapsed time" />
-  <link rel="stylesheet" type="text/css" href="./lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <link rel="stylesheet" type="text/css" href="css/responsive.css" />
   <link rel="stylesheet" type="text/css" href="css/styles_stopwatch.css" />
   <link rel="stylesheet" type="text/css" href="css/responsive_stopwatch.css" />
 </head>
 <body>
-  <!-- Navigation header -->
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <button type="button" class="navbar-toggle collapsed"
         data-toggle="collapse"
@@ -27,10 +25,10 @@
       </button>
       <div class="collapse navbar-collapse" id="adminMenu">
         <ul class="nav navbar-nav">
-          <li menu-id="Countdown">
+          <li>
             <a href="#/">Countdown</a>
           </li>
-          <li menu-id="Stopwatch">
+          <li>
             <a href="#/stopwatch">Stopwatch</a>
           </li>
         </ul>
@@ -40,14 +38,14 @@
 
   <ng-view></ng-view>
 
-  <script type="text/javascript" src="./lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./lib/angular/angular.min.js"></script>
-  <script type="text/javascript" src="./lib/angular/angular-route.min.js"></script>
-  <script type="text/javascript" src="./modules/directives.js"></script>
-  <script type="text/javascript" src="./modules/controllers.js"></script>
-  <script type="text/javascript" src="./modules/filters.js"></script>
-  <script type="text/javascript" src="./modules/main.js"></script>
-  <script type="text/javascript" src="./modules/components.js"></script>
+  <script src="./lib/jquery/jquery.min.js"></script>
+  <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./lib/angular/angular.min.js"></script>
+  <script src="./lib/angular/angular-route.min.js"></script>
+  <script src="./modules/directives.js"></script>
+  <script src="./modules/controllers.js"></script>
+  <script src="./modules/filters.js"></script>
+  <script src="./modules/main.js"></script>
+  <script src="./modules/components.js"></script>
 </body>
 </html>
