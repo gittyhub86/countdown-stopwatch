@@ -1,7 +1,7 @@
 function TimerCtrl($scope, dateService) {
-	var now = new Date();
+	const now = new Date();
 	var requestAnimationFrame;
-	var requestId;
+	let requestId;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
 	this.dateVal = now.getDate();
@@ -19,7 +19,7 @@ function TimerCtrl($scope, dateService) {
 	this.disableButton = false;
 	this.getUserDate = getUserDate;
 
-	var resetProperties = () => {
+	const resetProperties = () => {
 		window.cancelAnimationFrame(requestId);
 		requestId = undefined;
 		if (!this.clickedStop) {
@@ -29,16 +29,16 @@ function TimerCtrl($scope, dateService) {
 		this.disableButton = false;
 	}
 
-	var startAnimation = () => {
+	const startAnimation = () => {
 		requestAnimationFrame = window.requestAnimationFrame
 			|| mozRequestAnimationFrame;
 		requestAnimationFrame(update);
 	}
 
-	var update = () => {
+	const update = () => {
 		$scope.$apply(() => {
-			var now = new Date();
-			var timeRemaining = this.userDate - now;
+			const now = new Date();
+			const timeRemaining = this.userDate - now;
 			this.seconds = Math.floor((timeRemaining/1000) % 60);
 			this.minutes = Math.floor((timeRemaining/1000/60) % 60);
 			this.hours = Math.floor((timeRemaining/(1000*60*60)) % 24);
@@ -97,7 +97,7 @@ function TimerCtrl($scope, dateService) {
 
 function StopWatchCtrl($scope) {
 	var requestAnimationFrame;
-	var requestId;
+	let requestId;
 	this.started;
 	this.startTime;
 	this.time = '0';
@@ -106,8 +106,8 @@ function StopWatchCtrl($scope) {
 	this.pausedTime = 0;
 	this.reset = reset;
 
-	var displayTime = () => {
-		var now = new Date();
+	const displayTime = () => {
+		const now = new Date();
 		if (!this.startTime) {
 			this.startTime = new Date();
 		}
@@ -116,7 +116,7 @@ function StopWatchCtrl($scope) {
 		}
 	}
 
-	var update = () => {
+	const update = () => {
 		$scope.$apply(displayTime);
 		requestId = requestAnimationFrame(update);
 	}
