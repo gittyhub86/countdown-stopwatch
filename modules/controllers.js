@@ -19,10 +19,6 @@ function TimerCtrl($scope, dateService) {
 	this.disableButton = false;
 	this.getUserDate = getUserDate;
 
-	var checkFutureDate = () => {
-		return this.userDate > new Date();
-	}
-
 	var resetProperties = () => {
 		window.cancelAnimationFrame(requestId);
 		requestId = undefined;
@@ -37,39 +33,6 @@ function TimerCtrl($scope, dateService) {
 		requestAnimationFrame = window.requestAnimationFrame
 			|| mozRequestAnimationFrame;
 		requestAnimationFrame(update);
-	}
-
-	var validateDate = () => {
-		if (isNaN(this.monthVal) || this.monthVal < 1
-			|| this.monthVal > 12) {
-			this.errArr.push(
-				"Month must be between 1 and 12"
-				);
-		}
-		if (isNaN(this.dateVal) || this.dateVal < 1 ||
-			this.dateVal > 31) {
-			this.errArr.push(
-				"Day must be between 1 and 31")
-		}
-		if (isNaN(this.hourVal) || this.hourVal < 0 || this.hourVal > 24) {
-			this.errArr.push("Hour value must be an integer between 0 and 24");
-		}
-		if (isNaN(this.minuteVal) || this.minuteVal < 0 ||
-			this.minuteVal > 59) {
-			this.errArr.push(
-				"Minutes must be between 0 and 59"
-				)
-		}
-		if (isNaN(this.yearVal) || this.yearVal < 0) {
-			this.errArr.push(
-				"Year must be greater than 1"
-				)
-		}
-		if (this.errArr.length > 0) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	var update = () => {
