@@ -1,4 +1,4 @@
-function TimerCtrl($scope) {
+function TimerCtrl($scope, dateService) {
 	var now = new Date();
 	var requestAnimationFrame;
 	var requestId;
@@ -7,7 +7,6 @@ function TimerCtrl($scope) {
 	this.dateVal = now.getDate();
 	this.hourVal = now.getHours();
 	this.minuteVal = 0;
-	this.userDate;
 	this.seconds;
 	this.minutes;
 	this.hours;
@@ -18,6 +17,7 @@ function TimerCtrl($scope) {
 	this.countdown = countdown;
 	this.stopCountdown = stopCountdown;
 	this.disableButton = false;
+	this.getUserDate = getUserDate;
 
 	var checkFutureDate = () => {
 		return this.userDate > new Date();
@@ -99,22 +99,30 @@ function TimerCtrl($scope) {
 		this.invalidTime = false;
 		this.countdownComplete = false;
 		this.errArr = [];
-		this.userDate = new Date(this.yearVal,
-				this.monthVal-1, this.dateVal, this.hourVal,
-				this.minuteVal);
-		if (!validateDate()) {
+		let errs = dateService.validDate(this.yearVal, this.monthVal,this.dateVal,
+												this.hourVal, this.minuteVal);
+		if (errs.length > 0) {
 			this.userDate = null;
+			this.errArr = [...errs];
 			this.stopCountdown();
 			return;
-		} else if (!checkFutureDate()) {
+		}
+		dateService.createUserDate();
+		if (dateService.checkFutureDate() < 0) {
 			this.validDate = false;
 			this.invalidTime = true;
-		} else {
+		}
+		else {
 			this.validDate = true;
 			this.invalidTime = false;
 			this.disableButton = true;
 			startAnimation();
 		}
+
+	}
+
+	function getUserDate() {
+		return dateService.getUserDate();
 	}
 
 	function stopCountdown() {
