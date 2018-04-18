@@ -38,7 +38,7 @@ function TimerCtrl($scope, dateService) {
 	const update = () => {
 		$scope.$apply(() => {
 			const now = new Date();
-			const timeRemaining = this.userDate - now;
+			const timeRemaining = dateService.getUserDate() - now;
 			this.seconds = Math.floor((timeRemaining/1000) % 60);
 			this.minutes = Math.floor((timeRemaining/1000/60) % 60);
 			this.hours = Math.floor((timeRemaining/(1000*60*60)) % 24);

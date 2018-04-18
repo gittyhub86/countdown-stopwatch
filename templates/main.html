@@ -7,7 +7,7 @@
 
     <div data-ng-show="ctrl.validDate">
       <div class="countdown-header">
-        Time until {{ctrl.userDate | datePretty}}
+        Time until {{ctrl.getUserDate() | datePretty}}
       </div>
       <div class="box">
         <div class="countdown-int">{{ctrl.days}}</div>
