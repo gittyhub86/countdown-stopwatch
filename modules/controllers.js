@@ -1,6 +1,11 @@
 function TimerCtrl($scope, dateService) {
 	const now = new Date();
-	var requestAnimationFrame;
+	const requestAnimationFrame = window.requestAnimationFrame ||
+								  window.webkitRequestAnimationFrame ||
+								  window.mozRequestAnimationFrame ||
+								  window.oRequestAnimationFrame ||
+								  window.msRequestAnimationFrame;
+	cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 	let requestId;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
@@ -20,7 +25,7 @@ function TimerCtrl($scope, dateService) {
 	this.getUserDate = getUserDate;
 
 	const resetProperties = () => {
-		window.cancelAnimationFrame(requestId);
+		cancelAnimationFrame(requestId);
 		requestId = undefined;
 		if (!this.clickedStop) {
 			this.countdownComplete = true;
@@ -30,8 +35,6 @@ function TimerCtrl($scope, dateService) {
 	}
 
 	const startAnimation = () => {
-		requestAnimationFrame = window.requestAnimationFrame
-			|| mozRequestAnimationFrame;
 		requestAnimationFrame(update);
 	}
 
@@ -96,7 +99,12 @@ function TimerCtrl($scope, dateService) {
 }
 
 function StopWatchCtrl($scope) {
-	var requestAnimationFrame;
+	const requestAnimationFrame = window.requestAnimationFrame ||
+								  window.webkitRequestAnimationFrame ||
+								  window.mozRequestAnimationFrame ||
+								  window.oRequestAnimationFrame ||
+								  window.msRequestAnimationFrame;
+	cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 	let requestId;
 	this.started;
 	this.startTime;
@@ -123,7 +131,7 @@ function StopWatchCtrl($scope) {
 
 	function pause() {
 		if (requestId) {
-			window.cancelAnimationFrame(requestId);
+			cancelAnimationFrame(requestId);
 			this.pausedTime = this.time;
 			this.startTime = null;
 			this.started = false;
@@ -131,7 +139,7 @@ function StopWatchCtrl($scope) {
 	}
 	function reset(){
 		if (requestId) {
-			window.cancelAnimationFrame(requestId);
+			cancelAnimationFrame(requestId);
 			requestId = null;
 			this.startTime = null;
 			this.pausedTime = 0;
@@ -142,8 +150,6 @@ function StopWatchCtrl($scope) {
 
 	function start(){
 		this.started = true;
-		requestAnimationFrame = window.requestAnimationFrame
-			|| window.mozRequestAnimationFrame;
 		requestAnimationFrame(update);
 	}
 }
