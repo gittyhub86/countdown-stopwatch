@@ -32,6 +32,7 @@ function TimerCtrl($scope, dateService) {
 		}
 		this.validDate = false;
 		this.disableButton = false;
+		this.fadeSecs = -1;
 	}
 
 	const startAnimation = () => {

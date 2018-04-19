@@ -30,7 +30,7 @@ function fadeSec() {
 				return watchScope.$eval('ctrl.fadeSecs');
 			}
 			scope.$watch(watchsecondsFunc, function(newVal, oldVal) {
-				if (oldVal !== undefined) {
+				if (oldVal !== undefined && newVal >= 0) {
 					fadeSecsFunc(0.05);
 				}
 				if (newVal < 0) {
