@@ -5,7 +5,7 @@ function TimerCtrl($scope, dateService) {
 								  window.mozRequestAnimationFrame ||
 								  window.oRequestAnimationFrame ||
 								  window.msRequestAnimationFrame;
-	cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 	let requestId;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
@@ -105,7 +105,7 @@ function StopWatchCtrl($scope) {
 								  window.mozRequestAnimationFrame ||
 								  window.oRequestAnimationFrame ||
 								  window.msRequestAnimationFrame;
-	cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 	let requestId;
 	this.started;
 	this.startTime;
