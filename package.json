@@ -1,5 +1,12 @@
 {
-	"dependencies": {
-		"express": "^4.12.3"
-	}
+  "scripts": {
+    "build": "babel modules -d es5"
+  },
+  "dependencies": {
+    "express": "~4.16.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
 }

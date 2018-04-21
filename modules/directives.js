@@ -19,14 +19,14 @@ function fadeSec() {
 		restrict: 'A',
 		controller: 'timerCtrl',
 		link: function(scope, element, attrs) {
-			var startOpacity = 0.90;
+			let startOpacity = 0.90;
 			function fadeSecsFunc(decrement) {
 				if (angular.isNumber(decrement) && decrement > 0) {
 					startOpacity -= decrement;
 					element.css('opacity', startOpacity);
 				}
 			}
-			var watchsecondsFunc = function(watchScope) {
+			const watchsecondsFunc = function(watchScope) {
 				return watchScope.$eval('ctrl.fadeSecs');
 			}
 			scope.$watch(watchsecondsFunc, function(newVal, oldVal) {
@@ -40,4 +40,64 @@ function fadeSec() {
 			});
 		}
 	};
+}
+
+function timeComponents(dateService) {
+	const requestAnimationFrame = window.requestAnimationFrame ||
+								  window.webkitRequestAnimationFrame ||
+								  window.mozRequestAnimationFrame ||
+								  window.oRequestAnimationFrame ||
+								  window.msRequestAnimationFrame;
+	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+	return {
+		restrict: 'E',
+		controller: 'timerCtrl as ctrl',
+		link: function(scope, element, attrs) {
+			function resetProperties () {
+				cancelAnimationFrame(requestId);
+				requestId = undefined;
+				scope.$evalAsync(() => {
+					if (!scope.ctrl.clickedStop) {
+						scope.ctrl.countdownComplete = true;
+					}
+					scope.ctrl.validDate = false;
+					scope.ctrl.disableButton = false;
+					scope.ctrl.fadeSecs = -1;
+				});
+			}
+			function startAnimation () {
+				requestAnimationFrame(update);
+			}
+			function update () {
+				const now = new Date();
+				const timeRemaining = dateService.getUserDate() - now;
+				scope.$evalAsync(() => {
+					scope.ctrl.seconds = Math.floor((timeRemaining/1000) % 60);
+					scope.ctrl.minutes = Math.floor((timeRemaining/1000/60) % 60);
+					scope.ctrl.hours = Math.floor((timeRemaining/(1000*60*60)) % 24);
+					scope.ctrl.days = Math.floor(timeRemaining/(1000*60*60*24));
+
+					if (timeRemaining < 11000) {
+						scope.ctrl.fadeSecs = scope.ctrl.seconds;
+					}
+					if (timeRemaining < 0) {
+						scope.ctrl.validDate = false;
+						scope.ctrl.disableButton = false;
+						scope.ctrl.clickedStop = false;
+						scope.ctrl.stopCountdown();
+						return;
+					}
+					requestId = requestAnimationFrame(update);
+				});
+			}
+			scope.$on('start', () => {
+				startAnimation();
+			});
+			scope.$on('stop', () => {
+				if (requestId) {
+					resetProperties();
+				}
+			});
+		}
+	}
 }

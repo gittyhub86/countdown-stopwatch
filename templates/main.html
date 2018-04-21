@@ -9,24 +9,26 @@
       <div class="countdown-header">
         Time until {{ctrl.getUserDate() | datePretty}}
       </div>
-      <div class="box">
-        <div class="countdown-int">{{ctrl.days}}</div>
-        <div class="countdown-text">Days</div>
-      </div>
-      <div class="box">
-        <div class="countdown-int">{{ctrl.hours}}</div>
-        <div class="countdown-text">Hours</div>
-      </div>
-      <div class="box">
-        <div class="countdown-int">{{ctrl.minutes}}</div>
-        <div class="countdown-text">Minutes</div>
-      </div>
-      <div class="box">
-        <div fade-sec class="countdown-int countdown-int-last">
-          {{ctrl.seconds}}
+      <time-components>
+        <div class="box">
+          <div class="countdown-int">{{ctrl.days}}</div>
+          <div class="countdown-text">Days</div>
         </div>
-        <div class="countdown-text">Seconds</div>
-      </div>
+        <div class="box">
+          <div class="countdown-int">{{ctrl.hours}}</div>
+          <div class="countdown-text">Hours</div>
+        </div>
+        <div class="box">
+          <div class="countdown-int">{{ctrl.minutes}}</div>
+          <div class="countdown-text">Minutes</div>
+        </div>
+        <div class="box">
+          <div fade-sec class="countdown-int countdown-int-last">
+            {{ctrl.seconds}}
+          </div>
+          <div class="countdown-text">Seconds</div>
+        </div>
+      </time-components>
     </div>
 
     <div class="error" data-ng-if="ctrl.invalidTime">
@@ -122,7 +124,7 @@
           <button data-ng-disabled="ctrl.disableButton" class="btn btn-primary"
             data-ng-click="ctrl.countdown()">Start</button>
           <button class="btn btn-primary"
-            data-ng-click="ctrl.stopCountdown()">
+            data-ng-click="ctrl.clickedStop=true; ctrl.stopCountdown()">
             Stop
           </button>
         </td>

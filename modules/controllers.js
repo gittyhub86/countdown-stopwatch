@@ -24,44 +24,6 @@ function TimerCtrl($scope, dateService) {
 	this.disableButton = false;
 	this.getUserDate = getUserDate;
 
-	const resetProperties = () => {
-		cancelAnimationFrame(requestId);
-		requestId = undefined;
-		if (!this.clickedStop) {
-			this.countdownComplete = true;
-		}
-		this.validDate = false;
-		this.disableButton = false;
-		this.fadeSecs = -1;
-	}
-
-	const startAnimation = () => {
-		requestAnimationFrame(update);
-	}
-
-	const update = () => {
-		const now = new Date();
-		const timeRemaining = dateService.getUserDate() - now;
-		$scope.$apply(() => {
-			this.seconds = Math.floor((timeRemaining/1000) % 60);
-			this.minutes = Math.floor((timeRemaining/1000/60) % 60);
-			this.hours = Math.floor((timeRemaining/(1000*60*60)) % 24);
-			this.days = Math.floor(timeRemaining/(1000*60*60*24));
-
-			if (timeRemaining < 11000) {
-				this.fadeSecs = this.seconds;
-			}
-			if (timeRemaining < 0) {
-				this.validDate = false;
-				this.disableButton = false;
-				this.clickedStop = false;
-				this.stopCountdown();
-				return;
-			}
-			requestId = requestAnimationFrame(update);
-		});
-	}
-
 	function countdown() {
 		this.invalidTime = false;
 		this.countdownComplete = false;
@@ -83,7 +45,7 @@ function TimerCtrl($scope, dateService) {
 			this.validDate = true;
 			this.invalidTime = false;
 			this.disableButton = true;
-			startAnimation();
+			$scope.$emit('start');
 		}
 
 	}
@@ -93,9 +55,7 @@ function TimerCtrl($scope, dateService) {
 	}
 
 	function stopCountdown() {
-		if (requestId) {
-			resetProperties();
-		}
+		$scope.$emit('stop');
 	}
 }
 
