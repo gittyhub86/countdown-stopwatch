@@ -49,6 +49,7 @@ function timeComponents(dateService) {
 								  window.oRequestAnimationFrame ||
 								  window.msRequestAnimationFrame;
 	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+	let requestId;
 	return {
 		restrict: 'E',
 		controller: 'timerCtrl as ctrl',
@@ -96,6 +97,63 @@ function timeComponents(dateService) {
 			scope.$on('stop', () => {
 				if (requestId) {
 					resetProperties();
+				}
+			});
+		}
+	}
+}
+
+function stopWatchDirective() {
+	let requestId;
+	const requestAnimationFrame = window.requestAnimationFrame ||
+								  window.webkitRequestAnimationFrame ||
+								  window.mozRequestAnimationFrame ||
+								  window.oRequestAnimationFrame ||
+								  window.msRequestAnimationFrame;
+	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+	return {
+		restrict: 'A',
+		controller: 'stopWatchCtrl as stopWatch',
+		link: function(scope, element, attrs) {
+			function displayTime () {
+				const now = new Date();
+				if (!scope.stopWatch.startTime) {
+					scope.stopWatch.startTime = new Date();
+				}
+				else {
+					scope.stopWatch.time = (now - scope.stopWatch.startTime) + scope.stopWatch.pausedTime;
+				}
+			}
+			function update () {
+				scope.$apply(displayTime);
+				requestId = requestAnimationFrame(update);
+			}
+			scope.$on('start', () => {
+				scope.$evalAsync(() => {
+					scope.stopWatch.started = true;
+				});
+				requestAnimationFrame(update);
+			});
+			scope.$on('pause', () => {
+				if (requestId) {
+					cancelAnimationFrame(requestId);
+					scope.$evalAsync(() => {
+						scope.stopWatch.pausedTime = scope.stopWatch.time;
+						scope.stopWatch.startTime = null;
+						scope.stopWatch.started = false;
+					});
+				}
+			});
+			scope.$on('reset', () => {
+				if (requestId) {
+					cancelAnimationFrame(requestId);
+					requestId = null;
+					scope.$evalAsync(() => {
+						scope.stopWatch.startTime = null;
+						scope.stopWatch.pausedTime = 0;
+						scope.stopWatch.time = '0';
+						scope.stopWatch.started = false;
+					});
 				}
 			});
 		}

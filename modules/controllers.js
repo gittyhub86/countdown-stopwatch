@@ -6,7 +6,6 @@ function TimerCtrl($scope, dateService) {
 								  window.oRequestAnimationFrame ||
 								  window.msRequestAnimationFrame;
 	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-	let requestId;
 	this.monthVal = now.getMonth() + 1;
 	this.yearVal = now.getFullYear();
 	this.dateVal = now.getDate();
@@ -49,7 +48,6 @@ function TimerCtrl($scope, dateService) {
 		}
 
 	}
-
 	function getUserDate() {
 		return dateService.getUserDate();
 	}
@@ -60,13 +58,6 @@ function TimerCtrl($scope, dateService) {
 }
 
 function StopWatchCtrl($scope) {
-	const requestAnimationFrame = window.requestAnimationFrame ||
-								  window.webkitRequestAnimationFrame ||
-								  window.mozRequestAnimationFrame ||
-								  window.oRequestAnimationFrame ||
-								  window.msRequestAnimationFrame;
-	const cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-	let requestId;
 	this.started;
 	this.startTime;
 	this.time = '0';
@@ -75,42 +66,13 @@ function StopWatchCtrl($scope) {
 	this.pausedTime = 0;
 	this.reset = reset;
 
-	const displayTime = () => {
-		const now = new Date();
-		if (!this.startTime) {
-			this.startTime = new Date();
-		}
-		else {
-			this.time = (now - this.startTime) + this.pausedTime;
-		}
-	}
-
-	const update = () => {
-		$scope.$apply(displayTime);
-		requestId = requestAnimationFrame(update);
-	}
-
 	function pause() {
-		if (requestId) {
-			cancelAnimationFrame(requestId);
-			this.pausedTime = this.time;
-			this.startTime = null;
-			this.started = false;
-		}
+		$scope.$emit('pause');
 	}
 	function reset(){
-		if (requestId) {
-			cancelAnimationFrame(requestId);
-			requestId = null;
-			this.startTime = null;
-			this.pausedTime = 0;
-			this.time = '0';
-			this.started = false;
-		}
+		$scope.$emit('reset');
 	}
-
 	function start(){
-		this.started = true;
-		requestAnimationFrame(update);
+		$scope.$emit('start');
 	}
 }

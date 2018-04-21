@@ -1,7 +1,7 @@
 <div id="stopwatch" class="main">
   <div class="content">
     <div class="stopclock-container">
-    <span class="time">{{stopWatch.time | stopWatchPretty}}</span>
+    <span stop-watch-directive class="time">{{stopWatch.time | stopWatchPretty}}</span>
       <div class="stopwatch-buttons">
         <button class="btn btn-lg" data-ng-click="stopWatch.start()"
           data-ng-disabled="stopWatch.started">
