@@ -61,6 +61,10 @@ function timeComponents(dateService) {
 					if (!scope.ctrl.clickedStop) {
 						scope.ctrl.countdownComplete = true;
 					}
+					scope.ctrl.seconds = '';
+					scope.ctrl.minutes = '';
+					scope.ctrl.hours = '';
+					scope.ctrl.days = '';
 					scope.ctrl.validDate = false;
 					scope.ctrl.disableButton = false;
 					scope.ctrl.fadeSecs = -1;
